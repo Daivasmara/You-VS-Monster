@@ -1,8 +1,12 @@
 # You-VS-Monster
-My first games ever created with Vue.js
+My first game ever created with Vue.js!
 
-Attacking Damage :
+```
+Attacking :
 ![Attacking Screenshoots](Screenshoots/Damaged.png)
+```
 
-Healing Damage :
-![Healing Screenshoots](Screenshoots/Healed.png)
+```
+Healing :
+>![Healing Screenshoots](Screenshoots/Healed.png)
+```
