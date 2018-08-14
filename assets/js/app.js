@@ -8,7 +8,7 @@ new Vue({
     playerHeal: 0,
     monsterHeal: 0,
     gameIsStarting: false,
-    logDisplayed: ''
+    logDisplayed: '',
   },
   methods: {
     attack: function(min, max){
@@ -24,12 +24,6 @@ new Vue({
       this.playerHealth += this.playerHeal,
       this.monsterHealth += this.monsterHeal,
       this.logDisplayed = 'heal'
-    },
-    giveUp: function(){
-      this.playerHealth = 100,
-      this.monsterHealth = 100,
-      this.gameIsStarting = !this.gameIsStarting,
-      this.logDisplayed = ''
     }
   },
   watch: {
@@ -38,7 +32,6 @@ new Vue({
         this.playerHealth = 0
       } else if (this.playerHealth > 100){
         this.playerHealth = 100
-        console.log(this.playerHealth)
       } else {
         this.playerHealth = this.playerHealth
       }
@@ -48,9 +41,15 @@ new Vue({
         this.monsterHealth = 0
       } else if (this.monsterHealth > 100){
         this.monsterHealth = 100
-        console.log(this.monsterHealth)
       } else {
         this.monsterHealth = this.monsterHealth
+      }
+    },
+    gameIsStarting: function(){
+      if (this.gameIsStarting = true){
+        this.playerHealth = 100,
+        this.monsterHealth = 100,
+        this.logDisplayed = ''
       }
     }
   }

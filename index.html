@@ -13,6 +13,7 @@
 <body>
   <div id="app">
     <div class="container">
+
       <!-- DISPLAY -->
       <div class="display row">
         <div class="player col-md-6">
@@ -48,7 +49,7 @@
           <button class="btn btn-danger" id="attack" @click="attack(0,10)">ATTACK</button>
           <button class="btn btn-warning" id="attack" @click="attack(0,20)">SPECIAL ATTACK</button>
           <button class="btn btn-success" id="attack" @click="heal(0,20)">HEAL</button>
-          <button class="btn btn-defaukt" id="attack" @click="giveUp">GIVE UP</button>
+          <button class="btn btn-defaukt" id="attack" @click="gameIsStarting = !gameIsStarting">GIVE UP</button>
         </div>
       </div>
 
