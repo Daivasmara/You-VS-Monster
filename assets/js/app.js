@@ -31,5 +31,27 @@ new Vue({
       this.gameIsStarting = !this.gameIsStarting,
       this.logDisplayed = ''
     }
+  },
+  watch: {
+    playerHealth: function(){
+      if (this.playerHealth < 0){
+        this.playerHealth = 0
+      } else if (this.playerHealth > 100){
+        this.playerHealth = 100
+        console.log(this.playerHealth)
+      } else {
+        this.playerHealth = this.playerHealth
+      }
+    },
+    monsterHealth: function(){
+      if (this.monsterHealth < 0){
+        this.monsterHealth = 0
+      } else if (this.monsterHealth > 100){
+        this.monsterHealth = 100
+        console.log(this.monsterHealth)
+      } else {
+        this.monsterHealth = this.monsterHealth
+      }
+    }
   }
 });
