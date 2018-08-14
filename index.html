@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Pangolin" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>Games</title>
+</head>
+<body>
+  <div id="app">
+    <div class="container">
+      <!-- DISPLAY -->
+      <div class="display row">
+        <div class="player col-md-6">
+          <h1>YOU</h1>
+          <div class="healthbar">
+            <div id="playerHealthBar" :style="{width: playerHealth + '%'}">
+              {{ playerHealth < 1 ? '0': playerHealth > 100 ? '100' : playerHealth }}
+              <div class="damagePopUp" v-if="logDisplayed === 'damage'">-{{ playerDamage }}</div>
+              <div class="healPopUp" v-if="logDisplayed === 'heal'">+{{ playerHeal }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="monster col-md-6">
+          <h1>MONSTER</h1>
+          <div class="healthbar">
+            <div id="monsterHealthBar" :style="{width: monsterHealth + '%'}">
+              {{ monsterHealth < 1 ? '0' : monsterHealth > 100 ? '100' : monsterHealth }}
+              <div class="damagePopUp" v-if="logDisplayed === 'damage'">-{{monsterDamage }}</div>
+              <div class="healPopUp" v-if="logDisplayed === 'heal'">+{{ monsterHeal }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MENU -->
+      <div class="menu row" v-if="!gameIsStarting">
+        <div class="menu-first col-md-2 offset-md-5">
+          <button class="btn btn-success" id="start" @click="gameIsStarting = !gameIsStarting">START NEW GAME</button>
+        </div>
+      </div>
+      <div class="menu row" v-else>
+        <div class="menu-second col-md-12">
+          <button class="btn btn-danger" id="attack" @click="attack(0,10)">ATTACK</button>
+          <button class="btn btn-warning" id="attack" @click="attack(0,20)">SPECIAL ATTACK</button>
+          <button class="btn btn-success" id="attack" @click="heal(0,20)">HEAL</button>
+          <button class="btn btn-defaukt" id="attack" @click="giveUp">GIVE UP</button>
+        </div>
+      </div>
+
+      <!-- Damage/Heal Log -->
+      <div class="damage row" v-if="logDisplayed === 'damage'">
+        <div class="log col-md-12">
+          <ul>
+            <li><span style="color: #6699ff;">YOU</span> did {{ monsterDamage }} damage to <span style="color: #ff6666;">MONSTER</span></li>
+            <li><span style="color: #ff6666;">MONSTER</span> did {{ playerDamage }} damage to <span style="color: #6699ff;">YOU</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="heal row" v-if="logDisplayed === 'heal'">
+        <div class="log col-md-12">
+          <ul>
+            <li><span style="color: #6699ff;">YOU</span> healed by {{ playerHeal }} points</li>
+            <li><span style="color: #ff6666;">MONSTER</span> healed by {{ monsterHeal }} points</li>
+          </ul>
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
