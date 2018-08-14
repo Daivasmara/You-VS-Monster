@@ -3,7 +3,7 @@ My first *mini* game ever created with Vue.js! I'm using CDN version of Vue due 
 
 
 ## Attacking :
-![Attacking Screenshoots](Screenshoots/Damaged.png)
+![Attacking Screenshoots](screenshoots/damaged.png)
 
 ## Healing :
-![Healing Screenshoots](Screenshoots/Healed.png)
+![Healing Screenshoots](screenshoots/healed.png)
