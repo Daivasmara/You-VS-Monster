@@ -63,9 +63,13 @@ li{
 .log ul li{
   font-weight: bold;
 }
-.reset, .quit{
-  display: block;
+.gif{
+  padding: 0;
+  text-align: center;
   margin: 10px auto;
-  padding: 10px 0;
-  width: 150px;
+}
+.gif img{
+  padding: 0;
+  display: block;
+  margin: 0 auto;
 }
