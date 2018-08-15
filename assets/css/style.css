@@ -5,22 +5,27 @@ li{
   margin-top: 100px;
   text-align: center;
 }
-.player h1{
+.nameInput{
+  height: 50px;
+  margin-bottom: 6px;
+  text-align: center;
+}
+.player1 h1{
   color: #6699ff;
 }
-.monster h1{
+.player2 h1{
   color: #ff6666;
 }
 .healthbar{
   background-color: #e6e6e6;
 }
 
-#playerHealthBar{
+#player1HealthBar{
   color: white;
   padding: 15px;
   background-color: green;
 }
-#monsterHealthBar{
+#player2HealthBar{
   color: white;
   padding: 15px;
   background-color: green;

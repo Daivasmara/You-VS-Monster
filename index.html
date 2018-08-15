@@ -16,23 +16,25 @@
 
       <!-- DISPLAY -->
       <div class="display row">
-        <div class="player col-md-6">
-          <h1>YOU</h1>
+        <div class="player1 col-md-6">
+          <input class="nameInput form-control" type="text" v-model="player1" v-show="showInput1" v-on:mouseout="showInput1 = !showInput1">
+          <h1 v-on:mouseover="showInput1 = !showInput1" v-show="!showInput1">{{ player1 }}</h1>
           <div class="healthbar">
-            <div id="playerHealthBar" :style="{width: playerHealth + '%'}">
-              {{ playerHealth < 1 ? '0': playerHealth > 100 ? '100' : playerHealth }}
-              <div class="damagePopUp" v-if="logDisplayed === 'damage'">-{{ playerDamage }}</div>
-              <div class="healPopUp" v-if="logDisplayed === 'heal'">+{{ playerHeal }}</div>
+            <div id="player1HealthBar" :style="{width: player1Health + '%'}">
+              {{ player1Health < 1 ? '0': player1Health > 100 ? '100' : player1Health }}
+              <div class="damagePopUp" v-if="logDisplayed === 'damage'">-{{ player1Damage }}</div>
+              <div class="healPopUp" v-if="logDisplayed === 'heal'">+{{ player1Heal }}</div>
             </div>
           </div>
         </div>
-        <div class="monster col-md-6">
-          <h1>MONSTER</h1>
+        <div class="player2 col-md-6">
+          <input class="nameInput form-control" type="text" v-model="player2" v-show="showInput2" v-on:mouseout="showInput2 = !showInput2">
+          <h1 v-on:mouseover="showInput2 = !showInput2" v-show="!showInput2">{{ player2 }}</h1>
           <div class="healthbar">
-            <div id="monsterHealthBar" :style="{width: monsterHealth + '%'}">
-              {{ monsterHealth < 1 ? '0' : monsterHealth > 100 ? '100' : monsterHealth }}
-              <div class="damagePopUp" v-if="logDisplayed === 'damage'">-{{monsterDamage }}</div>
-              <div class="healPopUp" v-if="logDisplayed === 'heal'">+{{ monsterHeal }}</div>
+            <div id="player2HealthBar" :style="{width: player2Health + '%'}">
+              {{ player2Health < 1 ? '0' : player2Health > 100 ? '100' : player2Health }}
+              <div class="damagePopUp" v-if="logDisplayed === 'damage'">-{{player2Damage }}</div>
+              <div class="healPopUp" v-if="logDisplayed === 'heal'">+{{ player2Heal }}</div>
             </div>
           </div>
         </div>
@@ -48,7 +50,7 @@
         <div class="menu-second col-md-12">
           <button class="btn btn-danger" id="attack" @click="attack(0,10)" :disabled="buttonDisabled">ATTACK</button>
           <button class="btn btn-warning" id="specialAttack" @click="attack(0,20)" :disabled="buttonDisabled">SPECIAL ATTACK</button>
-          <button class="btn btn-success" id="heal" @click="heal(0,20)" :disabled="healDisabled">HEAL</button>
+          <button class="btn btn-success" id="heal" @click="heal(0,20)" :disabled="buttonDisabled">HEAL</button>
           <button class="btn btn-default" id="giveUp" @click="gameState" :disabled="buttonDisabled">GIVE UP</button>
         </div>
       </div>
@@ -57,31 +59,31 @@
       <div class="damage row" v-if="logDisplayed === 'damage'">
         <div class="log col-md-12">
           <ul>
-            <li><span style="color: #6699ff;">YOU</span> did {{ monsterDamage }} damage to <span style="color: #ff6666;">MONSTER</span></li>
-            <li><span style="color: #ff6666;">MONSTER</span> did {{ playerDamage }} damage to <span style="color: #6699ff;">YOU</span></li>
+            <li><span style="color: #6699ff;">{{ player1 }}</span> did {{ player2Damage }} damage to <span style="color: #ff6666;">{{ player2 }}</span></li>
+            <li><span style="color: #ff6666;">{{ player2 }}</span> did {{ player1Damage }} damage to <span style="color: #6699ff;">{{ player1 }}</span></li>
           </ul>
         </div>
       </div>
       <div class="heal row" v-if="logDisplayed === 'heal'">
         <div class="log col-md-12">
           <ul>
-            <li><span style="color: #6699ff;">YOU</span> healed by {{ playerHeal }} points</li>
-            <li><span style="color: #ff6666;">MONSTER</span> healed by {{ monsterHeal }} points</li>
+            <li><span style="color: #6699ff;">{{ player1 }}</span> healed by {{ player1Heal }} points</li>
+            <li><span style="color: #ff6666;">{{ player2 }}</span> healed by {{ player2Heal }} points</li>
           </ul>
         </div>
       </div>
-      <div class="win row" v-if="resultDisplayed === 'win'">
+      <div class="player1win row" v-if="resultDisplayed === 'player1win'">
         <div class="log col-md-12">
           <ul>
-            <li><span style="color: #6699ff;">YOU</span> Win!</li>
+            <li><span style="color: #6699ff;">{{ player1 }}</span> Win!</li>
             <li><button class="reset btn btn-success" @click = "tryAgain">Try Again</button></li>
           </ul>
         </div>
       </div>
-      <div class="lose row" v-if="resultDisplayed === 'lose'">
+      <div class="player2win row" v-if="resultDisplayed === 'player2win'">
         <div class="log col-md-12">
           <ul>
-            <li><span style="color: #6699ff;">YOU</span> Lose.</li>
+            <li><span style="color: #ff6666;">{{ player2 }}</span> win!</li>
             <li><button class="reset btn btn-success" @click = "tryAgain">Try Again</button></li>
           </ul>
         </div>

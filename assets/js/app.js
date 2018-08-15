@@ -1,37 +1,40 @@
 new Vue({
   el: '#app',
   data: {
-    playerHealth: 100,
-    monsterHealth: 100,
-    playerDamage: 0,
-    monsterDamage: 0,
-    playerHeal: 0,
-    monsterHeal: 0,
+    player1: 'PLAYER 1',
+    player2: 'PLAYER 2',
+    showInput1: false,
+    showInput2: false,
+    player1Health: 100,
+    player2Health: 100,
+    player1Damage: 0,
+    player2Damage: 0,
+    player1Heal: 0,
+    player2Heal: 0,
     gameIsStarting: false,
     buttonDisabled: false,
-    healDisabled: true,
     logDisplayed: '',
     resultDisplayed: ''
   },
   methods: {
     attack: function(min, max){
-      this.playerDamage = Math.floor(Math.random() * (max - min + 1) ) + min;
-      this.monsterDamage = Math.floor(Math.random() * (max - min + 1) ) + min;
-      this.playerHealth -= this.playerDamage,
-      this.monsterHealth -= this.monsterDamage,
+      this.player1Damage = Math.floor(Math.random() * (max - min + 1) ) + min;
+      this.player2Damage = Math.floor(Math.random() * (max - min + 1) ) + min;
+      this.player1Health -= this.player1Damage,
+      this.player2Health -= this.player2Damage,
       this.logDisplayed = 'damage'
     },
     heal: function(min, max){
-      this.playerHeal = Math.floor(Math.random() * (max - min + 1) ) + min;
-      this.monsterHeal = Math.floor(Math.random() * (max - min + 1) ) + min;
-      this.playerHealth += this.playerHeal,
-      this.monsterHealth += this.monsterHeal,
+      this.player1Heal = Math.floor(Math.random() * (max - min + 1) ) + min;
+      this.player2Heal = Math.floor(Math.random() * (max - min + 1) ) + min;
+      this.player1Health += this.player1Heal,
+      this.player2Health += this.player2Heal,
       this.logDisplayed = 'heal'
     },
     gameState: function(){
       this.gameIsStarting = !this.gameIsStarting,
-      this.playerHealth = 100,
-      this.monsterHealth = 100,
+      this.player1Health = 100,
+      this.player2Health = 100,
       this.logDisplayed = '',
       this.resultDisplayed = ''
     },
@@ -41,32 +44,26 @@ new Vue({
     }
   },
   watch: {
-    playerHealth: function(){
-      if (this.playerHealth < 1){
-        this.playerHealth = 0,
+    player1Health: function(){
+      if (this.player1Health < 1){
+        this.player1Health = 0,
         this.buttonDisabled = true,
-        this.resultDisplayed = 'lose',
-        this.healDisabled = false
-      } else if (this.playerHealth > 99){
-        this.playerHealth = 100,
-        this.healDisabled = true
+        this.resultDisplayed = 'player2win'
+      } else if (this.player1Health > 99){
+        this.player1Health = 100
       } else {
-        this.playerHealth = this.playerHealth,
-        this.healDisabled = false
+        this.player1Health = this.player1Health
       }
     },
-    monsterHealth: function(){
-      if (this.monsterHealth < 1){
-        this.monsterHealth = 0,
+    player2Health: function(){
+      if (this.player2Health < 1){
+        this.player2Health = 0,
         this.buttonDisabled = true,
-        this.resultDisplayed = 'win',
-        this.healDisabled = false
-      } else if (this.monsterHealth > 99){
-        this.monsterHealth = 100,
-        this.healDisabled = true
+        this.resultDisplayed = 'player1win'
+      } else if (this.player2Health > 99){
+        this.player2Health = 100
       } else {
-        this.monsterHealth = this.monsterHealth,
-        this.healDisabled = false
+        this.player2Health = this.player2Health
       }
     }
   }
