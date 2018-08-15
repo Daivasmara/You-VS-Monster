@@ -58,3 +58,9 @@ li{
 .log ul li{
   font-weight: bold;
 }
+.reset, .quit{
+  display: block;
+  margin: 10px auto;
+  padding: 10px 0;
+  width: 150px;
+}

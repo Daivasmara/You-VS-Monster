@@ -41,15 +41,15 @@
       <!-- MENU -->
       <div class="menu row" v-if="!gameIsStarting">
         <div class="menu-first col-md-2 offset-md-5">
-          <button class="btn btn-success" id="start" @click="gameIsStarting = !gameIsStarting">START NEW GAME</button>
+          <button class="btn btn-success" id="start" @click="gameState">START NEW GAME</button>
         </div>
       </div>
       <div class="menu row" v-else>
         <div class="menu-second col-md-12">
-          <button class="btn btn-danger" id="attack" @click="attack(0,10)">ATTACK</button>
-          <button class="btn btn-warning" id="attack" @click="attack(0,20)">SPECIAL ATTACK</button>
-          <button class="btn btn-success" id="attack" @click="heal(0,20)">HEAL</button>
-          <button class="btn btn-defaukt" id="attack" @click="gameIsStarting = !gameIsStarting">GIVE UP</button>
+          <button class="btn btn-danger" id="attack" @click="attack(0,10)" :disabled="buttonDisabled">ATTACK</button>
+          <button class="btn btn-warning" id="specialAttack" @click="attack(0,20)" :disabled="buttonDisabled">SPECIAL ATTACK</button>
+          <button class="btn btn-success" id="heal" @click="heal(0,20)" :disabled="buttonDisabled">HEAL</button>
+          <button class="btn btn-default" id="giveUp" @click="gameState" :disabled="buttonDisabled">GIVE UP</button>
         </div>
       </div>
 
@@ -67,6 +67,22 @@
           <ul>
             <li><span style="color: #6699ff;">YOU</span> healed by {{ playerHeal }} points</li>
             <li><span style="color: #ff6666;">MONSTER</span> healed by {{ monsterHeal }} points</li>
+          </ul>
+        </div>
+      </div>
+      <div class="win row" v-if="resultDisplayed === 'win'">
+        <div class="log col-md-12">
+          <ul>
+            <li><span style="color: #6699ff;">YOU</span> Win!</li>
+            <li><button class="reset btn btn-success" @click = "tryAgain">Try Again</button></li>
+          </ul>
+        </div>
+      </div>
+      <div class="lose row" v-if="resultDisplayed === 'lose'">
+        <div class="log col-md-12">
+          <ul>
+            <li><span style="color: #6699ff;">YOU</span> Lose.</li>
+            <li><button class="reset btn btn-success" @click = "tryAgain">Try Again</button></li>
           </ul>
         </div>
       </div>

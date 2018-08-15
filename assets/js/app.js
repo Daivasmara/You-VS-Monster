@@ -8,7 +8,9 @@ new Vue({
     playerHeal: 0,
     monsterHeal: 0,
     gameIsStarting: false,
+    buttonDisabled: false,
     logDisplayed: '',
+    resultDisplayed: ''
   },
   methods: {
     attack: function(min, max){
@@ -24,32 +26,49 @@ new Vue({
       this.playerHealth += this.playerHeal,
       this.monsterHealth += this.monsterHeal,
       this.logDisplayed = 'heal'
+    },
+    gameState: function(){
+      this.gameIsStarting = !this.gameIsStarting,
+      this.playerHealth = 100,
+      this.monsterHealth = 100,
+      this.logDisplayed = '',
+      this.resultDisplayed = ''
+    },
+    tryAgain: function(){
+      this.gameState(),
+      this.buttonDisabled = !this.buttonDisabled
+    },
+    closeWindow: function(){
+      if (confirm("Close Window?")) {
+        window.close();
+      }
     }
   },
   watch: {
     playerHealth: function(){
-      if (this.playerHealth < 0){
-        this.playerHealth = 0
+      if (this.playerHealth < 1){
+        this.playerHealth = 0,
+        this.playerDamage = 0,
+        this.buttonDisabled = true,
+        this.resultDisplayed = 'lose'
       } else if (this.playerHealth > 100){
-        this.playerHealth = 100
+        this.playerHealth = 100,
+        this.playerHeal = 0
       } else {
         this.playerHealth = this.playerHealth
       }
     },
     monsterHealth: function(){
-      if (this.monsterHealth < 0){
-        this.monsterHealth = 0
+      if (this.monsterHealth < 1){
+        this.monsterHealth = 0,
+        this.monsterDamage = 0,
+        this.buttonDisabled = true,
+        this.resultDisplayed = 'win'
       } else if (this.monsterHealth > 100){
-        this.monsterHealth = 100
+        this.monsterHealth = 100,
+        this.monsterHeal = 0
       } else {
         this.monsterHealth = this.monsterHealth
-      }
-    },
-    gameIsStarting: function(){
-      if (this.gameIsStarting = true){
-        this.playerHealth = 100,
-        this.monsterHealth = 100,
-        this.logDisplayed = ''
       }
     }
   }
