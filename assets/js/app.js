@@ -9,6 +9,7 @@ new Vue({
     monsterHeal: 0,
     gameIsStarting: false,
     buttonDisabled: false,
+    healDisabled: true,
     logDisplayed: '',
     resultDisplayed: ''
   },
@@ -37,11 +38,6 @@ new Vue({
     tryAgain: function(){
       this.gameState(),
       this.buttonDisabled = !this.buttonDisabled
-    },
-    closeWindow: function(){
-      if (confirm("Close Window?")) {
-        window.close();
-      }
     }
   },
   watch: {
@@ -49,22 +45,28 @@ new Vue({
       if (this.playerHealth < 1){
         this.playerHealth = 0,
         this.buttonDisabled = true,
-        this.resultDisplayed = 'lose'
-      } else if (this.playerHealth > 100){
-        this.playerHealth = 100
+        this.resultDisplayed = 'lose',
+        this.healDisabled = false
+      } else if (this.playerHealth > 99){
+        this.playerHealth = 100,
+        this.healDisabled = true
       } else {
-        this.playerHealth = this.playerHealth
+        this.playerHealth = this.playerHealth,
+        this.healDisabled = false
       }
     },
     monsterHealth: function(){
       if (this.monsterHealth < 1){
         this.monsterHealth = 0,
         this.buttonDisabled = true,
-        this.resultDisplayed = 'win'
+        this.resultDisplayed = 'win',
+        this.healDisabled = false
       } else if (this.monsterHealth > 99){
-        this.monsterHealth = 100
+        this.monsterHealth = 100,
+        this.healDisabled = true
       } else {
-        this.monsterHealth = this.monsterHealth
+        this.monsterHealth = this.monsterHealth,
+        this.healDisabled = false
       }
     }
   }
