@@ -7,3 +7,6 @@ My first *mini* game ever created with Vue.js! I'm using CDN version of Vue due 
 
 ## Healing :
 ![Healing Screenshoots](screenshoots/healed.png)
+
+## Fight Result :
+![Win Screenshoots](screenshoots/win.png)
