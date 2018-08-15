@@ -48,12 +48,10 @@ new Vue({
     playerHealth: function(){
       if (this.playerHealth < 1){
         this.playerHealth = 0,
-        this.playerDamage = 0,
         this.buttonDisabled = true,
         this.resultDisplayed = 'lose'
       } else if (this.playerHealth > 100){
-        this.playerHealth = 100,
-        this.playerHeal = 0
+        this.playerHealth = 100
       } else {
         this.playerHealth = this.playerHealth
       }
@@ -61,12 +59,10 @@ new Vue({
     monsterHealth: function(){
       if (this.monsterHealth < 1){
         this.monsterHealth = 0,
-        this.monsterDamage = 0,
         this.buttonDisabled = true,
         this.resultDisplayed = 'win'
       } else if (this.monsterHealth > 99){
-        this.monsterHealth = 100,
-        this.monsterHeal = 0
+        this.monsterHealth = 100
       } else {
         this.monsterHealth = this.monsterHealth
       }
