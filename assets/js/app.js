@@ -64,7 +64,7 @@ new Vue({
         this.monsterDamage = 0,
         this.buttonDisabled = true,
         this.resultDisplayed = 'win'
-      } else if (this.monsterHealth > 100){
+      } else if (this.monsterHealth > 99){
         this.monsterHealth = 100,
         this.monsterHeal = 0
       } else {
