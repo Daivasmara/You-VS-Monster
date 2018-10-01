@@ -10,3 +10,12 @@ My first *mini* game ever created with only Vue.js! I'm using CDN version of Vue
 
 ## Fight Result :
 ![Win Screenshoots](screenshoots/win.png)
+
+## Built With
+
+* [Vue.js](https://vuejs.org/) - JavaScript Framework
+* [Bootstrap CSS](http://getbootstrap.com/) - CSS Framework
+
+## Author
+
+* **Muhammad Daivasmara Denaw** - [Daivasmara](https://github.com/Daivasmara)
